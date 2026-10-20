@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvwrfokt5v8ue"]
 
-[ext_resource type="Texture2D" uid="uid://bbqriuyxbyuwp" path="res://1_Mine_Tileset_1_16.png" id="1_papbn"]
+[ext_resource type="Texture2D" uid="uid://bbqriuyxbyuwp" path="res://Sprites/1_Mine_Tileset_1_16.png" id="1_papbn"]
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://nodes/Player.tscn" id="1_qscmc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qscmc"]
