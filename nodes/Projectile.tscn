@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dc3s2pqcs1qp7"]
+
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_nffdq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxot2"]
+size = Vector2(127, 20)
+
+[node name="Projectile" type="RigidBody2D" unique_id=1694043183]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.28125)
+texture = ExtResource("1_nffdq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2093500935]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_kxot2")
