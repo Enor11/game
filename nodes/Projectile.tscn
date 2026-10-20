@@ -9,9 +9,9 @@ size = Vector2(18, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cjb"]
 size = Vector2(2, 5)
 
-[node name="Projectile" type="RigidBody2D" unique_id=1694043183]
+[node name="Projectile" type="CharacterBody2D" unique_id=563420729]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 8
 script = ExtResource("1_3ruad")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
