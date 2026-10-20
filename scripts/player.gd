@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var scene = get_tree().root
-@onready var projectile = preload("res://nodes/Projectile.tscn")
+const projectile = preload("res://nodes/Projectile.tscn")
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
