@@ -1,18 +1,33 @@
 [gd_scene format=3 uid="uid://dc3s2pqcs1qp7"]
 
+[ext_resource type="Script" uid="uid://prkjiefg7rr8" path="res://scripts/projectile.gd" id="1_3ruad"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_nffdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxot2"]
-size = Vector2(127, 20)
+size = Vector2(18, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cjb"]
+size = Vector2(2, 5)
 
 [node name="Projectile" type="RigidBody2D" unique_id=1694043183]
 collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_3ruad")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
-position = Vector2(0, 1)
-scale = Vector2(1, 0.28125)
+position = Vector2(-3.8146973e-06, 9.536743e-07)
+scale = Vector2(0.15625, 0.0859375)
 texture = ExtResource("1_nffdq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2093500935]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_kxot2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1057975555]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1277717984]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_k3cjb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
