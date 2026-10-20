@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var scene = get_tree().get_first_node_in_group("Node2D")
+@onready var scene = get_tree().root
 @onready var projectile = preload("res://nodes/Projectile.tscn")
 
 const SPEED = 300.0
