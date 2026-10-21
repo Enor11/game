@@ -10,13 +10,19 @@ size = Vector2(18, 8)
 size = Vector2(2, 5)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=563420729]
-collision_layer = 4
-collision_mask = 8
+collision_layer = 0
+collision_mask = 9
+platform_on_leave = 2
 script = ExtResource("1_3ruad")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
-position = Vector2(-3.8146973e-06, 9.536743e-07)
-scale = Vector2(0.15625, 0.0859375)
+position = Vector2(-1.9073486e-06, 9.536743e-07)
+scale = Vector2(0.15624997, 0.0859375)
+texture = ExtResource("1_nffdq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1870803799]
+position = Vector2(5.9999995, -1.1920929e-07)
+scale = Vector2(0.046874996, 0.06250001)
 texture = ExtResource("1_nffdq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2093500935]
@@ -24,10 +30,11 @@ shape = SubResource("RectangleShape2D_kxot2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1057975555]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1277717984]
-position = Vector2(9, 0)
+position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_k3cjb")
+one_way_collision_direction = Vector2(1, 0)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

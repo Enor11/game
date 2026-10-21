@@ -1,13 +1,15 @@
 extends CharacterBody2D
+class_name Player
 
-@onready var scene = get_tree().root
+@onready var scene = get_tree().current_scene
 const projectile = preload("res://nodes/Projectile.tscn")
 
-var projectile_count = 3
+@export var projectile_count = 10
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
-var JUMP_AVAILIBLE = true;
+var JUMP_AVAILIBLE = true
+var facing_dir = 1
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	# movement
 	var direction := Input.get_axis("Left", "Right")
 	if direction:
+		facing_dir = direction
 		velocity.x = direction * SPEED
 		$Sprite2D.flip_h = direction < 0
 	else:
@@ -35,8 +38,8 @@ func _physics_process(delta: float) -> void:
 		var projectileInstance = projectile.instantiate()
 		projectileInstance.global_position = position
 		projectileInstance.speed = 200
-		projectileInstance.direction = 1
-		scene.get_tree().root.add_child.call_deferred(projectileInstance)
+		projectileInstance.direction = -1 if facing_dir < 0 else 1
+		scene.add_child.call_deferred(projectileInstance)
 		projectile_count -= 1 
 	
 	move_and_slide()
