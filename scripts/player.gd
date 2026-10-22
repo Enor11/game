@@ -6,6 +6,8 @@ const projectile = preload("res://nodes/Projectile.tscn")
 
 @export var projectile_count = 10
 
+@onready var _animation_player = $AnimationPlayer
+
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 var JUMP_AVAILIBLE = true
@@ -30,8 +32,10 @@ func _physics_process(delta: float) -> void:
 		facing_dir = direction
 		velocity.x = direction * SPEED
 		$Sprite2D.flip_h = direction < 0
+		_animation_player.play("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		_animation_player.stop()
 
 	# projectiles
 	if Input.is_action_just_pressed("Interact") and projectile_count:
