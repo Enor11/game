@@ -55,14 +55,9 @@ texture = ExtResource("1_papbn")
 5:3/0 = 0
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_podbc"]
-texture = ExtResource("2_qscmc")
-0:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_lgqqw"]
 physics_layer_0/collision_layer = 8
 sources/0 = SubResource("TileSetAtlasSource_qscmc")
-sources/1 = SubResource("TileSetAtlasSource_podbc")
 
 [node name="Node2D" type="Node2D" unique_id=656016425]
 
