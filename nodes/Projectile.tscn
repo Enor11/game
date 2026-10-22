@@ -1,13 +1,79 @@
 [gd_scene format=3 uid="uid://dc3s2pqcs1qp7"]
 
 [ext_resource type="Script" uid="uid://prkjiefg7rr8" path="res://scripts/projectile.gd" id="1_3ruad"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_nffdq"]
+[ext_resource type="Texture2D" uid="uid://d1gbu83gbqfl5" path="res://Sprites/projectile.png" id="2_524lc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxot2"]
-size = Vector2(18, 8)
+size = Vector2(24, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cjb"]
 size = Vector2(2, 5)
+
+[sub_resource type="Animation" id="Animation_3ruad"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_524lc"]
+resource_name = "break"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_svgw0"]
+resource_name = "hit"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3vh0"]
+_data = {
+&"RESET": SubResource("Animation_3ruad"),
+&"break": SubResource("Animation_524lc"),
+&"hit": SubResource("Animation_svgw0")
+}
 
 [node name="Projectile" type="CharacterBody2D" unique_id=563420729]
 collision_layer = 0
@@ -15,17 +81,8 @@ collision_mask = 9
 platform_on_leave = 2
 script = ExtResource("1_3ruad")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
-position = Vector2(-1.9073486e-06, 9.536743e-07)
-scale = Vector2(0.15624997, 0.0859375)
-texture = ExtResource("1_nffdq")
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1870803799]
-position = Vector2(5.9999995, -1.1920929e-07)
-scale = Vector2(0.046874996, 0.06250001)
-texture = ExtResource("1_nffdq")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2093500935]
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_kxot2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1057975555]
@@ -33,8 +90,26 @@ collision_layer = 0
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1277717984]
-position = Vector2(10, 0)
+position = Vector2(11, -1)
 shape = SubResource("RectangleShape2D_k3cjb")
 one_way_collision_direction = Vector2(1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
+position = Vector2(-1.0000005, 9.536743e-07)
+texture = ExtResource("2_524lc")
+vframes = 8
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 80)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=850940274]
+position = Vector2(14, 0)
+texture = ExtResource("2_524lc")
+vframes = 2
+region_enabled = true
+region_rect = Rect2(24, 0, 6, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=189766658]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_n3vh0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
