@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_d16bx"]
 resource_name = "walk"
-length = 2.4666667
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -32,7 +32,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1),
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.39999998, 0.5, 0.6, 0.70000005),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 0, 1, 2, 3, 4, 3, 2]
@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1648563641]
+position = Vector2(0, -3)
 collision_mask = 12
 script = ExtResource("1_kpjcp")
 
