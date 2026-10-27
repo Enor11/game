@@ -3,15 +3,24 @@ class_name Player
 
 @onready var scene = get_tree().current_scene
 const projectile = preload("res://nodes/Projectile.tscn")
-
-@export var projectile_count = 10
-
 @onready var _animation_player = $AnimationPlayer
 
+@export var projectile_count = 10
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 var JUMP_AVAILIBLE = true
 var facing_dir = 1
+
+func _input(event):
+	# Mouse in viewport coordinates.
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("M1"): print("Mouse 1 Click")
+		if event.is_action_pressed("M2"): print("Mouse 2 Click")
+		if event.is_action_released("M1"): print("Mouse 1 unclick")
+		if event.is_action_released("M2"): print("Mouse 2 unclick")
+		print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
+	elif event is InputEventMouseMotion:
+		print("Mouse Motion at: ", get_viewport().get_mouse_position())# physic process pārcelt
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

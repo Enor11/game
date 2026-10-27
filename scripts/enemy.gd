@@ -7,4 +7,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		get_tree().reload_current_scene()
 	if body is Projectile:
 		print("hit!!!")
-		StaticBody2D.visible = false
+		$".".queue_free()
