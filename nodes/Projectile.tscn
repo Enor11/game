@@ -1,79 +1,13 @@
 [gd_scene format=3 uid="uid://dc3s2pqcs1qp7"]
 
 [ext_resource type="Script" uid="uid://prkjiefg7rr8" path="res://scripts/projectile.gd" id="1_3ruad"]
-[ext_resource type="Texture2D" uid="uid://d1gbu83gbqfl5" path="res://Sprites/projectile.png" id="2_524lc"]
+[ext_resource type="PackedScene" uid="uid://cf6rri28yva7d" path="res://nodes/projectile_texture.tscn" id="2_3ruad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxot2"]
 size = Vector2(24, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cjb"]
 size = Vector2(2, 5)
-
-[sub_resource type="Animation" id="Animation_3ruad"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Sprite2D2:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_524lc"]
-resource_name = "break"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_svgw0"]
-resource_name = "hit"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3vh0"]
-_data = {
-&"RESET": SubResource("Animation_3ruad"),
-&"break": SubResource("Animation_524lc"),
-&"hit": SubResource("Animation_svgw0")
-}
 
 [node name="Projectile" type="CharacterBody2D" unique_id=563420729]
 collision_layer = 0
@@ -94,22 +28,7 @@ position = Vector2(11, -1)
 shape = SubResource("RectangleShape2D_k3cjb")
 one_way_collision_direction = Vector2(1, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282621738]
-position = Vector2(-1.0000005, 9.536743e-07)
-texture = ExtResource("2_524lc")
-vframes = 8
-region_enabled = true
-region_rect = Rect2(0, 0, 24, 80)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=850940274]
-position = Vector2(15, -9.536743e-07)
-texture = ExtResource("2_524lc")
-vframes = 2
-region_enabled = true
-region_rect = Rect2(24, 0, 6, 20)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=189766658]
-root_node = NodePath("../Sprite2D")
-libraries/ = SubResource("AnimationLibrary_n3vh0")
+[node name="ProjectileTexture" parent="." unique_id=253299046 instance=ExtResource("2_3ruad")]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
