@@ -1,8 +1,7 @@
 extends CharacterBody2D
 class_name Projectile
 
-@onready var animation_node = $"AnimationPlayer"
-
+@onready var ProjectileTexture = %ProjectileTexture.animation_player
 @export var speed = 0
 @export var direction = 0:
 	set(value):
@@ -21,8 +20,6 @@ func _update_facing() -> void:
 func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * speed
-		#if velocity.x < 0: scale = Vector2(-1,1)
-		#elif velocity.x > 0: scale = Vector2(1,1)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
@@ -30,9 +27,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and not body is Player:
-		animation_node.queue("hit")
-		animation_node.queue("break")
-		
+		ProjectileTexture.queue("hit")
+		ProjectileTexture.queue("break")
 		
 		collision_layer = 4 # 3 layer
 		set_physics_process(false)
