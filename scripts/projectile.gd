@@ -4,13 +4,25 @@ class_name Projectile
 @onready var animation_node = $"AnimationPlayer"
 
 @export var speed = 0
-@export var direction = 0
+@export var direction = 0:
+	set(value):
+		direction = value
+		_update_facing()
+
+func _ready() -> void:
+	_update_facing()
+
+func _update_facing() -> void:
+	if not is_node_ready():
+		return
+	if direction != 0:
+		scale = Vector2(direction,1)
 
 func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * speed
-		if velocity.x < 0: scale = Vector2(-1,1)
-		elif velocity.x > 0: scale = Vector2(1,1)
+		#if velocity.x < 0: scale = Vector2(-1,1)
+		#elif velocity.x > 0: scale = Vector2(1,1)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
@@ -18,8 +30,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and not body is Player:
-		animation_node.play("break")
-		animation_node.play("hit")
+		animation_node.queue("hit")
+		animation_node.queue("break")
+		
 		
 		collision_layer = 4 # 3 layer
 		set_physics_process(false)
