@@ -76,7 +76,7 @@ _data = {
 }
 
 [node name="Projectile" type="CharacterBody2D" unique_id=563420729]
-collision_layer = 0
+collision_layer = 9
 collision_mask = 9
 platform_on_leave = 2
 script = ExtResource("1_3ruad")
@@ -86,7 +86,7 @@ position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_kxot2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1057975555]
-collision_layer = 0
+collision_layer = 9
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1277717984]

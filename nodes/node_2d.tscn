@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbqriuyxbyuwp" path="res://Sprites/1_Mine_Tileset_1_16.png" id="1_papbn"]
 [ext_resource type="PackedScene" uid="uid://5sgy0k2htp7b" path="res://nodes/Player.tscn" id="1_qscmc"]
 [ext_resource type="Texture2D" uid="uid://cne6dwyy4iy7w" path="res://Sprites/bg.png" id="2_qscmc"]
+[ext_resource type="PackedScene" uid="uid://v46akennpmfb" path="res://nodes/enemy.tscn" id="4_podbc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qscmc"]
 texture = ExtResource("1_papbn")
@@ -81,3 +82,10 @@ position = Vector2(-17, 36)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=631634017]
 zoom = Vector2(3, 3)
+
+[node name="StaticBody2D" parent="." unique_id=543931968 instance=ExtResource("4_podbc")]
+position = Vector2(-98, 50)
+collision_mask = 9
+
+[node name="StaticBody2D2" parent="." unique_id=1773152628 instance=ExtResource("4_podbc")]
+position = Vector2(-164, 66)
