@@ -12,13 +12,14 @@ script = ExtResource("1_g5f4b")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360909112]
 texture = ExtResource("1_vx18p")
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=650732906]
 collision_layer = 9
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1240403662]
-position = Vector2(-4.5, 3)
+position = Vector2(4.5, 3)
 shape = SubResource("RectangleShape2D_lgqqw")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
