@@ -4,3 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	animation_player = $AnimationPlayer
+
+func _physics_process(delta: float) -> void:
+	if rad_to_deg(self.rotation) <= -180: self.rotation = deg_to_rad(180)
+	elif rad_to_deg(self.rotation) >= 180: self.rotation = deg_to_rad(-180)
